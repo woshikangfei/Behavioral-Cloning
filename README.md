@@ -25,4 +25,5 @@ Run this command at the terminal prompt to install [OpenCV](http://opencv.org/).
 
 The model is trained using Keras<br>
 
+the cnn network use nvidia end-to-end model papr[paper](http://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf)<br>
 
