@@ -11,7 +11,7 @@ from PIL import Image
 from PIL import ImageOps
 from flask import Flask, render_template
 from io import BytesIO
-
+import cv2
 from keras.models import model_from_json
 from keras.preprocessing.image import ImageDataGenerator, array_to_img, img_to_array
 
@@ -36,20 +36,31 @@ def telemetry(sid, data):
     # The current image from the center camera of the car
     imgString = data["image"]
     image = Image.open(BytesIO(base64.b64decode(imgString)))
-	#image_array = np.asarray(image)
+	image_array = np.asarray(image)
     #transformed_image_array = cv2.resize((image_array[30:135, :, :]),(200,66))
 
 	#add
-	image = img.convert('RGB')
-	img = img.resize((img_height,img_width ))
-	x_train_processed_image=np.zeros((len(img),img_width,img_height,3))
-	x_train_processed_image[0] =x_train_processed_image
-	image_array=x_train_processed_image
+	#image = img.convert('RGB')
+	#img = img.resize((img_height,img_width ))
+	#x_train_processed_image=np.zeros((len(img),img_width,img_height,3))
+	#x_train_processed_image[0] =x_train_processed_image
+	#image_array=x_train_processed_image
 
-    transformed_image_array = image_array[None, :, :, :]
+    #transformed_image_array = image_array[None, :, :, :]
     # This model currently assumes that the features of the model are just the images. Feel free to change this.
-    steering_angle = float(model.predict(transformed_image_array, batch_size=1))
+    #steering_angle = float(model.predict(transformed_image_array, batch_size=1))
     # The driving model currently just outputs a constant throttle. Feel free to edit this.
+	images = images[40:,:,:]
+    images = cv2.resize(images,(200,66),interpolation=cv2.INTER_CUBIC)
+    images =cv2.cvtColor(images,cv2.COLOR_BGR2YUV)
+    images= images.astype('float32')
+    x_train_processed_image=np.zeros((1,66,200,3))
+    x_train_processed_image[0]=images
+    print(1)
+    # This model currently assumes that the features of the model are just the images. Feel free to change this.
+    steering_angle = float(model.predict(x_train_processed_image, batch_size=1))
+    print(steering_angle)
+    print(2)
     throttle = 0.2
     print(steering_angle, throttle)
     send_control(steering_angle, throttle)
