@@ -25,7 +25,7 @@ Run this command at the terminal prompt to install [OpenCV](http://opencv.org/).
 I first train the data through the simulator and try to train a model. The resulting training angle is as follows:
 <br>
 
-![png](output_3_0.png)
+![png](a.png)
 
 ### Image Processing
 
@@ -36,7 +36,7 @@ The image is processed in three steps:<br>
 3, change the image from RGB to YUV (this really helps smooth the image of the model with less information processing) <br>
 The following is the processed image<br>
 
-![png](output_3_0.png)
+![png](b.png)
 
 ### Network Architecture
 
