@@ -40,7 +40,7 @@ The following is the processed image<br>
 
 ### Network Architecture
 
-I started using the NVIDIA network architecture described in the course of this article to get the desired output and modify it numerous times.[paper](http://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf)
+I  using the NVIDIA network architecture described in the course of this article to get the desired output and modify it numerous times.[paper](http://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf)
 My implementation process is as follows:<br>
 1, from the simulator training data, read the middle of the camera picture and turn angle,<br>
 2. Define the nvidia network model<br>
