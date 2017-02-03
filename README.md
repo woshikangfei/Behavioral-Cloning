@@ -37,6 +37,8 @@ I added an ELU activation function for each layer, in addition to the output lay
 <br>
 I used my own car to train the model, but the total is not successful, then I downloaded the udacity test set, I found that my training set data do not obey the normal distribution, mainly because I use the keyboard to train the car , Rather than the game controller, in the data processing time, I split the data, detailed in the following description.
 
+udacity data is goods.like this:
+![png](data.png)
 ## Data Preprocessing
 
 ### Random selection between left, center, or right image
