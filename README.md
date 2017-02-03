@@ -20,6 +20,25 @@ This project requires **Python 3.5** and the following Python libraries installe
 
 Run this command at the terminal prompt to install [OpenCV](http://opencv.org/). 
 
+### Files included
+- model.py The script used to create and train the model.*
+- drive.py The script to drive the car. You can feel free to resubmit the original drive.py or make modifications and submit -- - your modified version.
+- model.json The model architecture.
+- model.h5 The model weights.
+
+## Model Architecture Design
+I studied the NVIDIA neural network for the car model. NVIDIA has used the NVIDIA model for end-to-end self-drive testing, and I made some adjustments to the model to avoid over-fitting and adding non-linearity to improve the prediction.
+<br>
+The model is based on the NVIDIA architecture. NVIDIA model is introduced in the course, I am slightly modified the model,
+<br>
+I use the Lambda layer to normalize the input image to avoid saturation and make gradients work better.<br>
+I added an extra dropout layer to avoid overfitting.<br>
+I added an ELU activation function for each layer, in addition to the output layer.<br>
+<br>
+I used my own car to train the model, but the total is not successful, then I downloaded the udacity test set, I found that my training set data do not obey the normal distribution, mainly because I use the keyboard to train the car , Rather than the game controller, in the data processing time, I split the data, detailed in the following description.
+
+## Data Preprocessing
+
 ### Random selection between left, center, or right image
 I used the center image, and the left and right images were also offset by + - 0.2 along some angles
 <br>
@@ -140,3 +159,13 @@ I used the GPU acceleration to train data, using the gtx1080 graphics card, the 
 
 ![png](gpu.png)
 
+## Training, Validation and Test
+I divided the datasets into training sets and validation sets to measure the performance of each period. Use the simulator for testing.
+
+### How to evaluate the model
+I use the mean square error of the loss function to measure the approximation of the model for each image to predict a given steering angle.
+<br>
+I use Adam optimizer to optimize, learning rate of 1.0e-4. The default value is too large, so that the validation loss stops improving too fast.
+
+##  conclusion
+Simulation car can complete the realization of unmanned, will not hit the roadside.
